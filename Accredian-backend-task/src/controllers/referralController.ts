@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../prismadb'
 import { sendReferralEmail } from '../services/emailService';
-
-const prisma = new PrismaClient();
 
 export const createReferral = async (req: Request, res: Response) => {
   const { referrerName, referrerEmail, refereeName, refereeEmail, course } = req.body;

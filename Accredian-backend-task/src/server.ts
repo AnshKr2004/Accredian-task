@@ -1,8 +1,7 @@
 import app from './app';
-import { PrismaClient } from '@prisma/client';
+import prisma from "./prismadb"
 
 const cors = require('cors');
-const prisma = new PrismaClient();
 
 app.use(cors());
 
