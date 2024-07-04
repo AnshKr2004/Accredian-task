@@ -2,7 +2,11 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { sendReferralEmail } from '../services/emailService';
 
-const prisma = new PrismaClient();
+declare global {
+  var prisma: PrismaClient | undefined
+}
+
+const prisma = globalThis.prisma || new PrismaClient()
 
 export const createReferral = async (req: Request, res: Response) => {
   const { referrerName, referrerEmail, refereeName, refereeEmail, course } = req.body;
