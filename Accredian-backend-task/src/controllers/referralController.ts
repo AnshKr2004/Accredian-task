@@ -6,7 +6,7 @@ declare global {
   var prisma: PrismaClient | undefined
 }
 
-const prisma = globalThis.prisma || new PrismaClient()
+const client = globalThis.prisma || new PrismaClient()
 
 export const createReferral = async (req: Request, res: Response) => {
   const { referrerName, referrerEmail, refereeName, refereeEmail, course } = req.body;
@@ -16,7 +16,7 @@ export const createReferral = async (req: Request, res: Response) => {
   }
 
   try {
-    const referral = await prisma.referral.create({
+    const referral = await client.referral.create({
       data: {
         referrerName,
         referrerEmail,
@@ -33,3 +33,5 @@ export const createReferral = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export default client;

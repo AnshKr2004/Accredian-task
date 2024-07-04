@@ -6,7 +6,7 @@ declare global {
 }
 
 const cors = require('cors');
-const prisma = globalThis.prisma || new PrismaClient()
+const client = globalThis.prisma || new PrismaClient()
 
 app.use(cors());
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {
-    await prisma.$connect();
+    await client.$connect();
     console.log('Connected to the database');
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
@@ -26,3 +26,4 @@ const startServer = async () => {
 };
 
 startServer();
+export default client;
