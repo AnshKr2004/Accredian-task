@@ -1,8 +1,12 @@
 import app from './app';
 import { PrismaClient } from '@prisma/client';
 
+declare global {
+  var prisma: PrismaClient | undefined
+}
+
 const cors = require('cors');
-const prisma = new PrismaClient();
+const prisma = globalThis.prisma || new PrismaClient()
 
 app.use(cors());
 
