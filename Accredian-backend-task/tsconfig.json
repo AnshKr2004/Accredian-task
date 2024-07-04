@@ -8,7 +8,8 @@
       "skipLibCheck": true,
       "outDir": "build",
       "rootDir": "src",
-      "types": ["node", "@prisma/client"]
+      "types": ["node", "@prisma/client"],
+      "baseUrl": "./"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
